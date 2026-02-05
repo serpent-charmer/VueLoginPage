@@ -6,10 +6,10 @@ import AccountCredentials from './common/account/AccountCredentials';
 import { useAccountStore } from './stores/AccountStore';
 
 const accountStore = useAccountStore();
-accountStore.populate();
+accountStore.copyFromDb();
 
 const addAccount = () => {
-  let account = new AccountCredentials(crypto.randomUUID(), [], AccountType.Local, "", null);
+  let account = new AccountCredentials(crypto.randomUUID(), "", AccountType.Local, "", null);
   accountStore.add(account);
 };
 
@@ -50,7 +50,7 @@ const removeAccount = (payload: any) => {
           <span>Логин</span>
           <span>Пароль</span>
         </div>
-        <AccountInfo v-for="(account) in accountStore.accounts" :account="account" :key="account.uid"
+        <AccountInfo v-for="(account) in accountStore.accounts" :account="account" :errors="accountStore.errors" :key="account.uid"
           @update-account="updateAccount" @remove-account="removeAccount" />
       </div>
 
@@ -75,6 +75,7 @@ const removeAccount = (payload: any) => {
 .account-row {
   display: grid;
   grid-template-columns: repeat(5, minmax(50px, 1fr));
+  align-items: center;
 }
 
 .account-row>* {
