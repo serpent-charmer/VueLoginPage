@@ -2,12 +2,14 @@
 import AccountInfo from './components/account/AccountInfoComponent.vue';
 import AccountType from './common/account/AccountType';
 import AccountCredentials from './common/account/AccountCredentials';
-import { useAccountStore } from './stores/counter';
+
+import { useAccountStore } from './stores/AccountStore';
 
 const accountStore = useAccountStore();
+accountStore.populate();
 
 const addAccount = () => {
-  let account = new AccountCredentials([], AccountType.Local, "", null);
+  let account = new AccountCredentials(crypto.randomUUID(), [], AccountType.Local, "", null);
   accountStore.add(account);
 };
 
@@ -43,7 +45,7 @@ const removeAccount = (payload: any) => {
 
       <div>
         <div class="account-row">
-          <span>Метка</span>
+          <span>Метки</span>
           <span>Тип записи</span>
           <span>Логин</span>
           <span>Пароль</span>

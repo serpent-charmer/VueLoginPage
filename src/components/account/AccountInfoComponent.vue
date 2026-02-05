@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue';
-import AccountCredentials from '../../common/account/AccountCredentials';
 import AccountType from '../../common/account/AccountType';
+
+import AccountCredentials from '@/common/account/AccountCredentials';
 
 const emit = defineEmits(['updateAccount', 'removeAccount']);
 const props = defineProps({
@@ -10,13 +11,12 @@ const props = defineProps({
         required: true
     }
 });
-let account = props.account;
-let isLdap = computed(() => account.type == AccountType.Ldap);
+const account = props.account;
+const isLdap = computed(() => props.account.type == AccountType.Ldap);
 const updateAccount = (uid: String, obj: any) => {
     emit('updateAccount', {uid, obj});
 }
 const removeAccount = (uid: String) => {
-    console.log(uid);
     emit('removeAccount', {uid});
 };
 </script>
