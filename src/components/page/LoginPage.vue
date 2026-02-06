@@ -59,7 +59,7 @@ const removeAccount = (payload: any) => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@fontsource/ibm-plex-mono/500.css';
 @import '@fontsource/ibm-plex-mono/600.css';
 @import '@fontsource/ibm-plex-mono/700.css';

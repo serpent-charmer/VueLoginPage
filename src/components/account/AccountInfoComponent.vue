@@ -46,13 +46,8 @@ const removeAccount = (uid: String) => {
 </template>
 
 <style lang="scss" scoped>
-.account-row {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(50px, 1fr));
-    align-items: center;
-}
 
-.account-ldap {
+.account-row.account-ldap {
     grid-template-columns: 1fr 1fr 2fr 1fr;
 }
 
